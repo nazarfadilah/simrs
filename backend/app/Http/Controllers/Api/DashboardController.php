@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dokter;
+use App\Models\Perawat;
 use App\Models\Pasien;
 use App\Models\Poli;
 use App\Models\Pendaftaran; // Jika Anda memiliki model Pendaftaran
@@ -18,12 +19,14 @@ class DashboardController extends Controller
         $pasienTotal = Pasien::count();
         $dokterTotal = Dokter::count();
         $poliTotal = Poli::count();
+        $perawatTotal = Perawat::count();
 
         return response()->json([
             'pendaftaran_count' => $pendaftaranTotal,
             'pasien_count' => $pasienTotal,
             'poli_count' => $poliTotal,
             'dokter_count' => $dokterTotal,
+            'perawat_count' => $perawatTotal,
         ]);
     }
 }

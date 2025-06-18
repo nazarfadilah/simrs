@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('nik')->unique();
             $table->string('nama_pasien', 100);
             $table->date('tgl_lahir');
-            $table->tinyInteger('agama');
-            $table->integer('kabupaten');
+            $table->string('agama');
+            $table->string('kabupaten');
             $table->string('pekerjaan', 50);
             $table->enum('jns_kelamin', ['pria', 'perempuan', '']);
             $table->string('alamat', 100);

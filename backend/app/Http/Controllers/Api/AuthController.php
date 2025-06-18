@@ -27,7 +27,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->role ?? 'Admin', // Set role, default to Admin if not provided
+            'role' => $request->role ?? '1', // Set role, default to 1 if not provided
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
