@@ -1,27 +1,21 @@
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
 <?php
 
 namespace App\Console;
 
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('sync:dokter')->everyMinute(); // atau ->hourly(), ->daily(), sesuai kebutuhan
-        $schedule->command('sync:perawat')->everyMinute(); // atau ->hourly(), ->daily(), sesuai kebutuhan
-        $schedule->command('sync:poli')->everyMinute(); // atau ->hourly(), ->daily(), sesuai kebutuhan
+        // Tambahkan command scheduler di sini
+        $schedule->command('app:sync-dokter')->everyMinute();
+        $schedule->command('app:sync-perawat')->everyMinute();
+        $schedule->command('app:sync-poli')->everyMinute();
     }
 
-    /**
-     * Register the commands for the application.
-     */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 
