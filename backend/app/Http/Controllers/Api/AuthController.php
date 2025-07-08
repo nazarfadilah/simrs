@@ -55,8 +55,6 @@ class AuthController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
-
-        // Jika Anda ingin mengembalikan role user, pastikan field 'role' sudah ada di tabel users
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
@@ -66,7 +64,7 @@ class AuthController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'role' => $user->role, // pastikan field role ada di tabel users
+                'role' => $user->role,
             ],
         ], 200);
     }

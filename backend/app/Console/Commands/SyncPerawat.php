@@ -25,10 +25,8 @@ class SyncPerawat extends Command
      */
     public function handle()
     {
-        $this->info("Mulai sinkronisasi data perawat...");
 
-        $response = \Http::withToken('5|OXbCPoiKD7g6xuOvMaBwEZnrA6IecVi7rEiuM6pd37de8074')
-            ->get('https://ti054a02.agussbn.my.id/api/perawats');
+        $response = Http::get('https://ti054a02.agussbn.my.id/api/perawats');
         if ($response->failed()) {
             $this->error("Gagal mengambil data dari API.");
             return;
@@ -45,6 +43,5 @@ class SyncPerawat extends Command
                 ]
             );
         }
-        $this->info("Sinkronisasi selesai. Total: " . count($dataPerawat) . " perawat.");
     }
 }

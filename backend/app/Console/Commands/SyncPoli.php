@@ -25,10 +25,7 @@ class SyncPoli extends Command
      */
     public function handle()
     {
-        $this->info("Mulai sinkronisasi data poli...");
-
-        $response = \Http::withToken('5|OXbCPoiKD7g6xuOvMaBwEZnrA6IecVi7rEiuM6pd37de8074')
-            ->get('https://ti054a02.agussbn.my.id/api/polis');
+        $response = Http::get('https://ti054a02.agussbn.my.id/api/polis');
 
         if ($response->failed()) {
             $this->error("Gagal mengambil data dari API.");
@@ -46,6 +43,5 @@ class SyncPoli extends Command
                 ]
             );
         }
-        $this->info("Sinkronisasi selesai. Total: " . count($dataPoli) . " poli.");
     }
 }

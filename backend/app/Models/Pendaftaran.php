@@ -11,8 +11,8 @@ class Pendaftaran extends Model
     use HasFactory;
 
     protected $primaryKey = 'no_registrasi';
-public $incrementing = true; // Pastikan ini TRUE
-protected $keyType = 'int'; // Tetap int
+public $incrementing = true;
+protected $keyType = 'int';
 
     protected $fillable = [
         'rm',

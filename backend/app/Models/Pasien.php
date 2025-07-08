@@ -15,8 +15,8 @@ class Pasien extends Model
      *
      * @var array<int, string>
      */
-    protected $primaryKey = 'rm';       // Gunakan kolom rm sebagai primary key
-    public $incrementing = false;       // Karena RM biasanya bukan integer auto-increment
+    protected $primaryKey = 'rm';
+    public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = [
         'rm',

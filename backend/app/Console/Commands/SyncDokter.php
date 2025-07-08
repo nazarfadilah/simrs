@@ -25,10 +25,7 @@ class SyncDokter extends Command
      */
     public function handle()
     {
-        $this->info("Mulai sinkronisasi data dokter...");
-
-        $response = Http::withToken('5|OXbCPoiKD7g6xuOvMaBwEZnrA6IecVi7rEiuM6pd37de8074')
-            ->get('https://ti054a02.agussbn.my.id/api/dokters');
+        $response = Http::get('https://ti054a02.agussbn.my.id/api/dokters');
 
         if ($response->failed()) {
             $this->error("Gagal mengambil data dari API.");
@@ -44,11 +41,9 @@ class SyncDokter extends Command
                     'nama_dokter' => $dokter['nama_dokter'],
                     'spesialis' => $dokter['spesialis'],
                     'no_hp_dokter' => $dokter['no_hp_dokter'],
-                    'id_user' => $dokter['id_user'] // pastikan kolom ini ada di tabel kamu
+                    'id_user' => $dokter['id_user']
                 ]
             );
         }
-
-        $this->info("Sinkronisasi selesai. Total: " . count($dataDokter) . " dokter.");
     }
 }

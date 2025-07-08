@@ -38,7 +38,7 @@ class PendaftaranController extends Controller
             'status' => 'required|integer',
             'no_antrian' => 'required|integer',
         ]);
-        $pendaftaran = Pendaftaran::create($validatedData); 
+        $pendaftaran = Pendaftaran::create($validatedData);
         $pendaftaran->load(['pasien', 'poli.dokter']);
 
         return new PendaftaranResource($pendaftaran);
@@ -75,5 +75,23 @@ class PendaftaranController extends Controller
     /**
      * Custom method to get historical registrations (for index-pendaftaran-riwayat.html)
      */
-    
+    public function getMaxAntrian(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_poli' => 'required|integer|exists:polis,id_poli',
+            'tgl_kunjungan' => 'required|date_format:Y-m-d',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        $validatedData = $validator->validated();
+        $maxAntrian = Pendaftaran::where('id_poli', $validatedData['id_poli'])
+                                  ->where('tgl_kunjungan', $validatedData['tgl_kunjungan'])
+                                  ->max('no_antrian');
+
+        return response()->json([
+            'max_no_antrian' => $maxAntrian ? (int)$maxAntrian : 0
+        ]);
+    }
+
 }

@@ -9,7 +9,7 @@ class Kernel extends ConsoleKernel
 {
     protected function schedule(Schedule $schedule): void
     {
-        // Tambahkan command scheduler di sini
+        // Tambahkan command scheduler di sini untuk sinkronisasi data secara otomatis
         $schedule->command('app:sync-dokter')->everyMinute();
         $schedule->command('app:sync-perawat')->everyMinute();
         $schedule->command('app:sync-poli')->everyMinute();

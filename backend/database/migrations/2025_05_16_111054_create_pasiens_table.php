@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('jns_kelamin', ['pria', 'perempuan', '']);
             $table->string('alamat', 100);
             $table->char('no_hp_pasien', 15);
-            $table->string('email_pasien', 20);
+            $table->string('email_pasien', 30);
             $table->char('gol_darah', 3);
             $table->timestamps();
         });
